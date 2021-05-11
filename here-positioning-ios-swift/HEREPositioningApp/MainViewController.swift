@@ -10,7 +10,9 @@ import CoreLocation
 class MainViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: NMAMapView!
-    @IBOutlet weak var label: UILabel!
+	@IBOutlet weak var label: UILabel!
+	@IBOutlet weak var nameTextFiled: UITextField!
+
     var locationManager: CLLocationManager!
 
     class Defaults {
@@ -106,12 +108,13 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        let parameters = ["name" : "Pratiksha",
+
+
+		let parameters = ["name" : nameTextFiled.text ?? "-",
                           "latitude" : latitude,
                           "longitude" : longitude,
-                          "os" : "iOS 12.5.1",
-                          "device" : "iPhone 8"] as [String : Any]
+                          "os" : "iOS - \(UIDevice.current.systemVersion)",
+                          "device" : UIDevice.current.name] as [String : Any]
         
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
