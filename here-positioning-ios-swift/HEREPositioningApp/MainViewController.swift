@@ -152,3 +152,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     }
     
 }
+
+extension MainViewController: UITextFieldDelegate {
+
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		return true
+	}
+}
