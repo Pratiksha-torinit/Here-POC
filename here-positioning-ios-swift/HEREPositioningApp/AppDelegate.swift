@@ -23,4 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NMAApplicationContext.setAppId(credentials.appId, appCode: credentials.appCode, licenseKey: credentials.licenseKey)
         return true
     }
+
+	func applicationDidBecomeActive(_ application: UIApplication) {
+
+		NMAPositioningManager.sharedInstance().dataSource?.setBackgroundUpdatesEnabled?(true)
+	}
 }
